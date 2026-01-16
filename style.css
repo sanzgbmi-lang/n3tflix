@@ -1,452 +1,382 @@
-/* ================= GLOBAL ================= */
+/* =====================================================
+   GLOBAL RESET
+   ===================================================== */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    background-color: #111;
-    color: #fff;
-    padding-top: 80px;
-    overflow-x: hidden;
-}
-
-/* ================= NAVBAR ================= */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 20px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.85);
-    z-index: 100;
-}
-
-.logo {
-    color: #e50914;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.navbar nav a {
-    color: #fff;
-    margin-left: 20px;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.navbar nav a:hover {
-    color: #e50914;
-}
-
-/* ================= HERO ================= */
-.hero {
-    height: 90vh;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    transition: background-image 1s ease-in-out;
-}
-
-.hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top,
-        rgba(0, 0, 0, 0.9),
-        rgba(0, 0, 0, 0.2));
-    pointer-events: none;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 500px;
-    padding: 200px 24px;
-}
-
-.hero h2 {
-    font-size: 48px;
-    margin-bottom: 15px;
-    animation: basin 0.8s ease-out;
-}
-
-.hero p {
-    font-size: 16px;
-    line-height: 1.5;
-    margin-bottom: 20px;
-    animation: basin 1s ease-out;
-}
-
-.hero-buttons {
-    animation: basin 1.2s ease-out;
-}
-
-/* ================= BUTTONS ================= */
-.btn {
-    padding: 10px 20px;
-    margin-right: 10px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 4px;
-}
-
-.play {
-    background: #fff;
-    color: #000;
-}
-
-.info {
-    background: rgba(109, 109, 110, 0.7);
-    color: #fff;
-}
-
-.btn:hover {
-    opacity: 0.8;
-}
-
-/* ================= ROWS ================= */
-.row {
-    margin-top: 30px;
-    padding: 0 24px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease-out;
-}
-
-.row.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.row h3 {
-    margin-bottom: 10px;
-}
-
-.row-posters {
-    display: flex;
-    overflow-x: auto;
-    padding-bottom: 20px;
-    min-height: 240px;
-}
-
-.row-posters img {
-    width: 160px;
-    margin-right: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.row-posters img:hover {
-    transform: scale(1.1);
-}
-
-.row-posters::-webkit-scrollbar {
-    display: none;
-}
-
-/* ================= ANIMATIONS ================= */
-@keyframes basin {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ================= MOBILE (HOME) ================= */
-@media (max-width: 768px) {
-    .hero {
-        height: 60vh;
-    }
-
-    .hero-content {
-        padding: 120px 16px;
-    }
-
-    .hero h2 {
-        font-size: 28px;
-    }
-
-    .row {
-        padding: 0 16px;
-    }
-
-    .row-posters img {
-        width: 120px;
-    }
+  background-color: #111;
+  color: #fff;
+  padding-top: 80px;
+  overflow-x: hidden;
 }
 
 /* =====================================================
-   MOVIE DETAILS PAGE (CINEMATIC)
+   NAVBAR
    ===================================================== */
-
-/* Remove navbar gap ONLY on movie page */
-body.movie-page {
-    padding-top: 0;
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 100;
 }
 
-/* ================= MOVIE HERO ================= */
+.logo {
+  color: #e50914;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.navbar nav a {
+  color: #fff;
+  margin-left: 20px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.navbar nav a:hover {
+  color: #e50914;
+}
+
+/* =====================================================
+   HERO (HOME / MOVIES / TV)
+   ===================================================== */
+.hero {
+  height: 90vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  transition: background-image 1s ease-in-out;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.2)
+  );
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+  padding: 200px 24px;
+}
+
+.hero h2 {
+  font-size: 48px;
+  margin-bottom: 15px;
+  animation: basin 0.8s ease-out;
+}
+
+.hero p {
+  font-size: 16px;
+  line-height: 1.5;
+  animation: basin 1s ease-out;
+}
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.play {
+  background: #fff;
+  color: #000;
+}
+
+.info {
+  background: rgba(109, 109, 110, 0.7);
+  color: #fff;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+/* =====================================================
+   ROWS (HOME / MOVIES / TV)
+   ===================================================== */
+.row {
+  margin-top: 30px;
+  padding: 0 24px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+
+.row.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.row h3 {
+  margin-bottom: 10px;
+}
+
+.row-posters {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 20px;
+  min-height: 240px;
+}
+
+.row-posters img {
+  width: 160px;
+  margin-right: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.row-posters img:hover {
+  transform: scale(1.1);
+}
+
+.row-posters::-webkit-scrollbar {
+  display: none;
+}
+
+/* =====================================================
+   MOVIES & TV PAGES (FORCE ROW VISIBILITY)
+   ===================================================== */
+body.movies-page .row,
+body.tv-page .row {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* =====================================================
+   MOVIE DETAILS PAGE
+   ===================================================== */
+body.movie-page {
+  padding-top: 0;
+}
+
 .movie-page .details-hero {
-    min-height: 100vh;
-    background-size: cover;
-    background-position: center top;
-    position: relative;
-    display: flex;
-    align-items: center;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center top;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .movie-page .details-hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right,
-        rgba(0, 0, 0, 0.9),
-        rgba(0, 0, 0, 0.35));
-    pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.35)
+  );
+  pointer-events: none;
 }
 
-/* ================= MOVIE CONTENT ================= */
 .movie-page .details-content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    gap: 40px;
-    padding: 120px 24px;
-    max-width: 1200px;
-    width: 100%;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 40px;
+  padding: 120px 24px;
+  max-width: 1200px;
+  width: 100%;
 }
 
 .movie-page .details-poster img {
-    width: 300px;
-    border-radius: 8px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
 
 .movie-page .details-info {
-    max-width: 600px;
+  max-width: 600px;
 }
 
 .movie-page .details-info h1 {
-    font-size: 42px;
-    margin-bottom: 10px;
+  font-size: 42px;
 }
 
 .movie-page .details-meta {
-    opacity: 0.85;
-    margin-bottom: 12px;
-    font-size: 14px;
+  opacity: 0.85;
+  font-size: 14px;
+  margin-bottom: 12px;
 }
 
 .movie-page .details-genres span {
-    display: inline-block;
-    margin-right: 8px;
-    font-size: 13px;
-    opacity: 0.8;
+  font-size: 13px;
+  opacity: 0.8;
+  margin-right: 8px;
 }
 
 .movie-page .details-overview {
-    margin: 20px 0;
-    line-height: 1.6;
-    font-size: 16px;
+  margin: 20px 0;
+  line-height: 1.6;
 }
 
 .movie-page .details-actions {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-/* ================= MOBILE (MOVIE PAGE) ================= */
-@media (max-width: 768px) {
-
-    .movie-page .details-hero {
-        align-items: flex-end;
-    }
-
-    .movie-page .details-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 100px 16px 40px;
-    }
-
-    .movie-page .details-poster img {
-        width: 180px;
-    }
-
-    .movie-page .details-info h1 {
-        font-size: 26px;
-        line-height: 1.2;
-    }
-
-    .movie-page .details-meta {
-        font-size: 13px;
-    }
-
-    .movie-page .details-overview {
-        font-size: 14px;
-        line-height: 1.5;
-        display: -webkit-box;
-        -webkit-line-clamp: 5;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        opacity: 0.9;
-    }
-
-    .movie-page .details-actions {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .movie-page .details-actions .btn {
-        flex: 1;
-        min-width: 140px;
-        padding: 14px 0;
-        font-size: 15px;
-    }
-
-    /* =====================================================
-   IMAGE LOADING OPTIMIZATION (MOVIE PAGE)
-   ===================================================== */
-
-    /* Placeholder background */
-    .movie-page .details-hero {
-        background-color: #000;
-        opacity: 0;
-        transition: opacity 0.6s ease;
-    }
-
-    /* Blur while loading */
-    .movie-page .details-hero.loading {
-        filter: blur(12px);
-    }
-
-    /* Fade in when ready */
-    .movie-page .details-hero.loaded {
-        opacity: 1;
-        filter: blur(0);
-    }
-
-    /* Poster placeholder */
-    .movie-page .details-poster img {
-        background: #222;
-    }
-
-    /* =====================================================
+/* =====================================================
    TRAILER MODAL
    ===================================================== */
+.trailer-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
 
-    .trailer-modal {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.85);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-    }
+.trailer-modal.active {
+  display: flex;
+}
 
-    .trailer-modal.active {
-        display: flex;
-    }
+.trailer-content {
+  width: 90%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  position: relative;
+}
 
-    .trailer-content {
-        position: relative;
-        width: 90%;
-        max-width: 900px;
-        aspect-ratio: 16 / 9;
-        background: #000;
-    }
+.trailer-content iframe {
+  width: 100%;
+  height: 100%;
+}
 
-    .trailer-content iframe {
-        width: 100%;
-        height: 100%;
-    }
+.trailer-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  font-size: 28px;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 
-    .trailer-close {
-        position: absolute;
-        top: -40px;
-        right: 0;
-        background: none;
-        border: none;
-        color: #fff;
-        font-size: 28px;
-        cursor: pointer;
-    }
-
-    /* Mobile */
-    @media (max-width: 768px) {
-        .trailer-close {
-            top: -32px;
-            font-size: 24px;
-        }
-    }
-
-    /* =====================================================
+/* =====================================================
    SEARCH PAGE
    ===================================================== */
+.search-page {
+  padding: 120px 24px 40px;
+}
 
-    .search-page {
-        padding: 120px 24px 40px;
-    }
+.search-page input {
+  width: 100%;
+  max-width: 600px;
+  padding: 14px 18px;
+  background: #222;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  margin-bottom: 30px;
+}
 
-    .search-page input {
-        width: 100%;
-        max-width: 600px;
-        padding: 14px 18px;
-        font-size: 16px;
-        border-radius: 4px;
-        border: none;
-        outline: none;
-        background: #222;
-        color: #fff;
-        margin-bottom: 30px;
-    }
+.search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
 
-    .search-results {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 12px;
-    }
+.search-results img {
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
 
-    .search-results img {
-        width: 100%;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: transform 0.3s;
-    }
+.search-results img:hover {
+  transform: scale(1.05);
+}
 
-    .search-results img:hover {
-        transform: scale(1.05);
-    }
+/* =====================================================
+   ANIMATIONS
+   ===================================================== */
+@keyframes basin {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    /* Mobile */
-    @media (max-width: 768px) {
-        .search-page {
-            padding-top: 100px;
-        }
+/* =====================================================
+   MOBILE
+   ===================================================== */
+@media (max-width: 768px) {
+  .hero {
+    height: 60vh;
+  }
 
-        .search-results {
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        }
-    }
+  .hero-content {
+    padding: 120px 16px;
+  }
 
-    /* Movies & TV pages: show rows immediately */
-    body.movies-page .row,
-    body.tv-page .row {
-        opacity: 1;
-        transform: none;
-    }
+  .hero h2 {
+    font-size: 28px;
+  }
 
+  .row {
+    padding: 0 16px;
+  }
+
+  .row-posters img {
+    width: 120px;
+  }
+
+  .movie-page .details-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 100px 16px 40px;
+  }
+
+  .movie-page .details-poster img {
+    width: 180px;
+  }
+
+  .movie-page .details-overview {
+    font-size: 14px;
+    -webkit-line-clamp: 5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .trailer-close {
+    top: -32px;
+    font-size: 24px;
+  }
 }

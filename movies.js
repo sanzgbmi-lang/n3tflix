@@ -19,21 +19,33 @@ async function fetchMovies(endpoint, containerId) {
     return;
   }
 
-  const res = await fetch(`${BASE_URL}${endpoint}?api_key=${API_KEY}`);
-  const data = await res.json();
+  container.innerHTML = ""; // 🔥 IMPORTANT
 
-  data.results.forEach(movie => {
-    if (!movie.poster_path) return;
+  try {
+    const res = await fetch(`${BASE_URL}${endpoint}?api_key=${API_KEY}`);
+    const data = await res.json();
 
-    const img = document.createElement("img");
-    img.src = IMG_URL + movie.poster_path;
-    img.alt = movie.title;
-    img.style.cursor = "pointer";
+    if (!data.results) {
+      console.error("No results for", endpoint);
+      return;
+    }
 
-    img.onclick = () => {
-      window.location.href = `movie.html?id=${movie.id}&type=movie`;
-    };
+    data.results.forEach(movie => {
+      if (!movie.poster_path) return;
 
-    container.appendChild(img);
-  });
+      const img = document.createElement("img");
+      img.src = IMG_URL + movie.poster_path;
+      img.alt = movie.title;
+      img.loading = "lazy";
+      img.style.cursor = "pointer";
+
+      img.onclick = () => {
+        window.location.href = `movie.html?id=${movie.id}&type=movie`;
+      };
+
+      container.appendChild(img);
+    });
+  } catch (err) {
+    console.error("TMDB error:", err);
+  }
 }
