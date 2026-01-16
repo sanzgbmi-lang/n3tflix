@@ -3,49 +3,33 @@ const BASE_URL = "https://api.themoviedb.org/3";
 const IMG_URL = "https://image.tmdb.org/t/p/w342";
 
 document.addEventListener("DOMContentLoaded", () => {
-  fetchMovies("/movie/popular", "popular");
-  fetchMovies("/movie/top_rated", "topRated");
-  fetchMovies("/movie/upcoming", "upcoming");
+    fetchMovies("/movie/popular", "popular");
+    fetchMovies("/movie/top_rated", "topRated");
+    fetchMovies("/movie/upcoming", "upcoming");
 });
 
-function goHome() {
-  window.location.href = "index.html";
-}
-
 async function fetchMovies(endpoint, containerId) {
-  const container = document.getElementById(containerId);
-  if (!container) {
-    console.error("Missing container:", containerId);
-    return;
-  }
+    const container = document.getElementById(containerId);
+    if (!container) return;
 
-  container.innerHTML = ""; // 🔥 IMPORTANT
+    container.innerHTML = "";
 
-  try {
     const res = await fetch(`${BASE_URL}${endpoint}?api_key=${API_KEY}`);
     const data = await res.json();
 
-    if (!data.results) {
-      console.error("No results for", endpoint);
-      return;
-    }
-
     data.results.forEach(movie => {
-      if (!movie.poster_path) return;
+        if (!movie.poster_path || !movie.id) return;
 
-      const img = document.createElement("img");
-      img.src = IMG_URL + movie.poster_path;
-      img.alt = movie.title;
-      img.loading = "lazy";
-      img.style.cursor = "pointer";
+        const link = document.createElement("a");
+        link.href = `movie.html?id=${movie.id}&type=movie`;
+        link.style.display = "inline-block";
 
-      img.onclick = () => {
-        window.location.href = `movie.html?id=${movie.id}&type=movie`;
-      };
+        const img = document.createElement("img");
+        img.src = IMG_URL + movie.poster_path;
+        img.alt = movie.title;
+        img.loading = "lazy";
 
-      container.appendChild(img);
+        link.appendChild(img);
+        container.appendChild(link);
     });
-  } catch (err) {
-    console.error("TMDB error:", err);
-  }
 }
