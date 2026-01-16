@@ -1,84 +1,109 @@
-/* =====================================================
-   HOME PAGE SCRIPT (TOP 10 + RECOMMENDED ONLY)
-   ===================================================== */
 
-/* ================= TOP 10 TODAY ================= */
+/* ================= HERO ================= */
+const HERO_ENDPOINT = "/trending/movie/week";
+let heroMovies = [];
+let heroIndex = 0;
 
-async function fetchTop10(endpoint, containerId) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-
-  container.innerHTML = "";
-
-  try {
-    const res = await fetch(
-      `${BASE_URL}${endpoint}?api_key=${API_KEY}`
-    );
+async function loadHero() {
+    const res = await fetch(`${BASE_URL}${HERO_ENDPOINT}?api_key=${API_KEY}`);
     const data = await res.json();
 
-    data.results.slice(0, 10).forEach((item, index) => {
-      if (!item.poster_path) return;
+    heroMovies = data.results.filter(m => m.backdrop_path && m.poster_path);
+    if (!heroMovies.length) return;
 
-      const type = item.title ? "movie" : "tv";
+    updateHero();
 
-      const link = document.createElement("a");
-      link.href = `movie.html?id=${item.id}&type=${type}`;
-      link.className = "top10-item";
-
-      const rank = document.createElement("span");
-      rank.className = "top10-rank";
-      rank.textContent = index + 1;
-
-      const img = document.createElement("img");
-      img.src = IMG_URL + item.poster_path;
-      img.alt = item.title || item.name;
-      img.loading = "lazy";
-
-      link.appendChild(rank);
-      link.appendChild(img);
-      container.appendChild(link);
-    });
-  } catch (err) {
-    console.error("Top 10 error:", err);
-  }
+    if (window.innerWidth >= 768) {
+        setInterval(updateHero, 5000);
+    }
 }
 
-/* ================= RECOMMENDED FOR YOU ================= */
+function updateHero() {
+    const movie = heroMovies[heroIndex];
+    const hero = document.getElementById("hero");
 
-async function fetchRecommended() {
-  const container = document.getElementById("recommended");
-  if (!container) return;
+    document.getElementById("hero-title").textContent =
+        movie.title || movie.name || "";
 
-  container.innerHTML = "";
+    document.getElementById("hero-desc").textContent =
+        movie.overview || "";
 
-  try {
-    const res = await fetch(
-      `${BASE_URL}/discover/movie?sort_by=popularity.desc&vote_average.gte=7&api_key=${API_KEY}`
-    );
+    const imagePath =
+        window.innerWidth < 768 ? movie.poster_path : movie.backdrop_path;
+
+    hero.style.backgroundImage =
+        `url(${IMG_URL.replace("w500", "original")}${imagePath})`;
+
+    heroIndex = (heroIndex + 1) % heroMovies.length;
+}
+
+function goHome() {
+    window.location.href = "index.html";
+}
+
+function filterMovies() {
+    window.location.href = "index.html?filter=movie";
+}
+
+function filterTV() {
+    window.location.href = "index.html?filter=tv";
+}
+/* ================= ROWS ================= */
+async function fetchMovies(endpoint, id) {
+    const res = await fetch(`${BASE_URL}${endpoint}?api_key=${API_KEY}`);
     const data = await res.json();
+    const container = document.getElementById(id);
+    if (!container) return;
+
+    container.innerHTML = "";
 
     data.results.forEach(movie => {
-      if (!movie.poster_path) return;
+        if (!movie.poster_path || !movie.id) return;
 
-      const link = document.createElement("a");
-      link.href = `movie.html?id=${movie.id}&type=movie`;
+        const type = movie.title ? "movie" : "tv";
 
-      const img = document.createElement("img");
-      img.src = IMG_URL + movie.poster_path;
-      img.alt = movie.title;
-      img.loading = "lazy";
+        // 🔑 CREATE ANCHOR (THIS IS THE KEY)
+        const link = document.createElement("a");
+        link.href = `movie.html?id=${movie.id}&type=${type}`;
+        link.style.display = "inline-block";
+        link.style.textDecoration = "none";
 
-      link.appendChild(img);
-      container.appendChild(link);
+        const img = document.createElement("img");
+        img.src = IMG_URL + movie.poster_path;
+        img.alt = movie.title || movie.name;
+        img.draggable = false;
+
+        link.appendChild(img);
+        container.appendChild(link);
     });
-  } catch (err) {
-    console.error("Recommended error:", err);
-  }
+}
+
+
+
+/* ================= SCROLL REVEAL ================= */
+function revealRows() {
+    const rows = document.querySelectorAll(".row");
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        }, { threshold: 0.2 }
+    );
+    rows.forEach(row => observer.observe(row));
 }
 
 /* ================= INIT ================= */
-
 document.addEventListener("DOMContentLoaded", () => {
-  fetchTop10("/trending/all/day", "top10");
-  fetchRecommended();
+    loadHero();
+
+    fetchMovies("/trending/movie/week", "trending");
+    fetchMovies("/movie/popular", "popular");
+    fetchMovies("/movie/top_rated", "topRated");
+    fetchMovies("/movie/upcoming", "upcoming");
+    fetchMovies("/trending/tv/week", "tv");
+
+    revealRows();
 });

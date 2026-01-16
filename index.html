@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>N3TFL3X</title>
+    <title>N3flix</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <!-- ================= NAVBAR ================= -->
+    <!-- NAVBAR -->
     <header class="navbar">
         <h1 class="logo" onclick="goHome()">N3TFL3X</h1>
         <nav>
@@ -19,17 +19,38 @@
             <a href="movies.html">Movies</a>
         </nav>
     </header>
-    <!-- ================= TOP 10 TODAY ================= -->
-    <section class="row top-10">
-        <h3>Top 10 Today</h3>
-        <div class="row-posters" id="top10"></div>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h2 id="hero-title"></h2>
+            <p id="hero-desc"></p>
+            <div class="hero-buttons">
+                <button class="btn play">▶ Play</button>
+                <button class="btn info">ℹ More Info</button>
+            </div>
+        </div>
     </section>
-    <!-- ================= RECOMMENDED ================= -->
+    <!-- ROWS -->
     <section class="row">
-        <h3>Recommended For You</h3>
-        <div class="row-posters" id="recommended"></div>
+        <h3>Trending Now</h3>
+        <div class="row-posters" id="trending"></div>
     </section>
-    <!-- ================= SCRIPTS ================= -->
+    <section class="row">
+        <h3>Popular Movies</h3>
+        <div class="row-posters" id="popular"></div>
+    </section>
+    <section class="row">
+        <h3>Top Rated</h3>
+        <div class="row-posters" id="topRated"></div>
+    </section>
+    <section class="row">
+        <h3>Upcoming</h3>
+        <div class="row-posters" id="upcoming"></div>
+    </section>
+    <section class="row">
+        <h3>TV Shows</h3>
+        <div class="row-posters" id="tv"></div>
+    </section>
     <script src="global.js" defer></script>
     <script src="script.js" defer></script>
 </body>
