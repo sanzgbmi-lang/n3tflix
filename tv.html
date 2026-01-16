@@ -8,6 +8,7 @@
 </head>
 
 <body class="tv-page">
+
   <!-- NAVBAR -->
   <header class="navbar">
     <h1 class="logo" onclick="goHome()">N3TFL3X</h1>
@@ -19,11 +20,11 @@
     </nav>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
+  <!-- FEATURED HERO -->
+  <section class="hero" id="tv-hero">
     <div class="hero-content">
-      <h2>TV Shows</h2>
-      <p>Discover trending and popular TV series.</p>
+      <h2 id="tv-hero-title">TV Shows</h2>
+      <p id="tv-hero-desc">Discover trending and popular TV series.</p>
     </div>
   </section>
 
@@ -43,6 +44,9 @@
     <div class="row-posters" id="topRatedTV"></div>
   </section>
 
-  <script src="tv.js"></script>
+  <!-- SCRIPTS -->
+  <script src="global.js" defer></script>
+  <script src="tv.js" defer></script>
+
 </body>
 </html>
