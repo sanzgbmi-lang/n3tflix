@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TV Shows • N3TFL3X</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <h1 class="logo" onclick="goHome()">N3TFL3X</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="search.html">Search</a>
+      <a href="tv.html">TV Shows</a>
+      <a href="movies.html">Movies</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>TV Shows</h2>
+      <p>Discover trending and popular TV series.</p>
+    </div>
+  </section>
+
+  <!-- TV ROWS -->
+  <section class="row">
+    <h3>Trending TV Shows</h3>
+    <div class="row-posters" id="trendingTV"></div>
+  </section>
+
+  <section class="row">
+    <h3>Popular TV Shows</h3>
+    <div class="row-posters" id="popularTV"></div>
+  </section>
+
+  <section class="row">
+    <h3>Top Rated TV Shows</h3>
+    <div class="row-posters" id="topRatedTV"></div>
+  </section>
+
+  <script src="tv.js"></script>
+</body>
+</html>

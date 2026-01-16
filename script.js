@@ -40,6 +40,17 @@ function updateHero() {
     heroIndex = (heroIndex + 1) % heroMovies.length;
 }
 
+function goHome() {
+    window.location.href = "index.html";
+}
+
+function filterMovies() {
+    window.location.href = "index.html?filter=movie";
+}
+
+function filterTV() {
+    window.location.href = "index.html?filter=tv";
+}
 /* ================= ROWS ================= */
 async function fetchMovies(endpoint, id) {
     const res = await fetch(`${BASE_URL}${endpoint}?api_key=${API_KEY}`);

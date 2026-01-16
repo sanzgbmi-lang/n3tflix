@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Movies • N3TFL3X</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <h1 class="logo" onclick="goHome()">N3TFL3X</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="search.html">Search</a>
+      <a href="tv.html">TV Shows</a>
+      <a href="movies.html">Movies</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Movies</h2>
+      <p>Explore popular, top-rated, and upcoming movies.</p>
+    </div>
+  </section>
+
+  <!-- MOVIE ROWS -->
+  <section class="row">
+    <h3>Popular Movies</h3>
+    <div class="row-posters" id="popular"></div>
+  </section>
+
+  <section class="row">
+    <h3>Top Rated Movies</h3>
+    <div class="row-posters" id="topRated"></div>
+  </section>
+
+  <section class="row">
+    <h3>Upcoming Movies</h3>
+    <div class="row-posters" id="upcoming"></div>
+  </section>
+
+  <script src="movies.js"></script>
+</body>
+</html>
