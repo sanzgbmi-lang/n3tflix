@@ -442,4 +442,11 @@ body.movie-page {
         }
     }
 
+    /* Movies & TV pages: show rows immediately */
+    body.movies-page .row,
+    body.tv-page .row {
+        opacity: 1;
+        transform: none;
+    }
+
 }
