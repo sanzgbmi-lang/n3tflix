@@ -70,18 +70,12 @@ body {
   color: #000;
 }
 
-.btn.play:hover {
-  background: rgba(255,255,255,0.85);
-  transform: scale(1.05);
-}
-
 .btn.info {
   background: rgba(109,109,110,0.7);
   color: #fff;
 }
 
-.btn.info:hover {
-  background: rgba(109,109,110,0.9);
+.btn:hover {
   transform: scale(1.05);
 }
 
@@ -106,7 +100,6 @@ body {
     rgba(0,0,0,0.9),
     rgba(0,0,0,0.2)
   );
-  pointer-events: none;
 }
 
 .hero-content {
@@ -127,39 +120,24 @@ body {
 }
 
 /* =====================================================
-   POSTER CARD (CRITICAL FIX)
+   POSTER CARD
    ===================================================== */
-
-/* force link color everywhere */
-.poster-card,
-.poster-card:link,
-.poster-card:visited,
-.poster-card:hover,
-.poster-card:active {
+.poster-card {
   text-decoration: none;
   color: #fff;
-}
-
-/* poster wrapper */
-.poster-card {
   display: inline-block;
-  width: 160px;
 }
 
-/* title */
 .poster-title {
   margin-top: 6px;
   font-size: 13px;
   color: #fff;
   opacity: 0.9;
-
-  /* ✅ NETFLIX STYLE */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* year */
 .poster-year {
   font-size: 12px;
   color: rgba(255,255,255,0.6);
@@ -200,7 +178,7 @@ body {
 }
 
 /* =====================================================
-   HOME PAGE (BIG POSTERS)
+   HOME PAGE
    ===================================================== */
 body:not(.movies-page):not(.tv-page) .poster-card {
   width: 160px;
@@ -212,7 +190,7 @@ body:not(.movies-page):not(.tv-page) .row-posters img {
 }
 
 /* =====================================================
-   MOVIES & TV PAGES
+   MOVIES & TV
    ===================================================== */
 body.movies-page .poster-card,
 body.tv-page .poster-card {
@@ -226,29 +204,23 @@ body.tv-page .row-posters img {
 }
 
 /* =====================================================
-   SEARCH PAGE
-   ===================================================== */
-.search-page {
-  padding: 120px 24px 40px;
-}
-
-.search-results {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 12px;
-}
-
-.search-results img {
-  width: 100%;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* =====================================================
-   MOVIE DETAILS
+   MOVIE DETAILS PAGE
    ===================================================== */
 body.movie-page {
   padding-top: 0;
+}
+
+.movie-page .details-content {
+  display: flex;
+  gap: 40px;
+  padding: 120px 24px;
+  max-width: 1200px;
+}
+
+.movie-page .details-poster img {
+  width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 
 /* =====================================================
@@ -284,10 +256,10 @@ body.movie-page {
   position: absolute;
   top: -40px;
   right: 0;
-  background: none;
-  border: none;
   font-size: 26px;
   color: #fff;
+  background: none;
+  border: none;
   cursor: pointer;
 }
 
@@ -300,10 +272,6 @@ body.movie-page {
     padding-top: 60px;
   }
 
-  .navbar {
-    padding: 12px 16px;
-  }
-
   .hero {
     height: 60vh;
   }
@@ -312,82 +280,23 @@ body.movie-page {
     padding: 120px 16px;
   }
 
-  .hero h2 {
-    font-size: 28px;
-  }
-
-  /* home */
   body:not(.movies-page):not(.tv-page) .poster-card {
     width: 120px;
   }
 
-  body:not(.movies-page):not(.tv-page) .row-posters img {
-    width: 120px;
-    min-width: 120px;
-  }
-
-  /* movies / tv */
   body.movies-page .poster-card,
   body.tv-page .poster-card {
     width: 100px;
   }
 
-  body.movies-page .row-posters img,
-  body.tv-page .row-posters img {
-    width: 100px;
-    min-width: 100px;
-  }
-   /* =====================================================
-   MOVIE DETAILS PAGE — ISOLATION FIX
-   ===================================================== */
-
-/* prevent row styles from affecting details page */
-body.movie-page .row,
-body.movie-page .row-posters,
-body.movie-page .poster-card {
-  all: unset;
-}
-
-/* poster size */
-body.movie-page .details-poster img {
-  width: 300px !important;
-  max-width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-}
-
-/* layout */
-body.movie-page .details-content {
-  display: flex;
-  gap: 40px;
-  padding: 120px 24px;
-  max-width: 1200px;
-  width: 100%;
-}
-
-/* title */
-body.movie-page .details-info h1 {
-  font-size: 42px;
-  margin-bottom: 12px;
-}
-
-/* overview */
-body.movie-page .details-overview {
-  font-size: 16px;
-  line-height: 1.6;
-  margin: 20px 0;
-}
-
-/* mobile */
-@media (max-width: 768px) {
-  body.movie-page .details-content {
+  .movie-page .details-content {
     flex-direction: column;
     align-items: center;
     text-align: center;
     padding: 100px 16px 40px;
   }
 
-  body.movie-page .details-poster img {
-    width: 180px !important;
+  .movie-page .details-poster img {
+    width: 180px;
   }
 }
