@@ -41,18 +41,35 @@ async function fetchMovies(endpoint, containerId) {
   data.results.forEach(movie => {
     if (!movie.poster_path) return;
 
-    const link = document.createElement("a");
-    link.href = `movie.html?id=${movie.id}&type=movie`;
-    link.style.display = "inline-block";
+    // ===== card wrapper =====
+    const card = document.createElement("a");
+    card.href = `movie.html?id=${movie.id}&type=movie`;
+    card.className = "poster-card";
 
+    // ===== poster =====
     const img = document.createElement("img");
     img.src = IMG_URL + movie.poster_path;
     img.alt = movie.title;
     img.loading = "lazy";
     img.draggable = false;
 
-    link.appendChild(img);
-    container.appendChild(link);
+    // ===== title =====
+    const title = document.createElement("div");
+    title.className = "poster-title";
+    title.textContent = movie.title;
+
+    // ===== year =====
+    const year = document.createElement("div");
+    year.className = "poster-year";
+    year.textContent = movie.release_date
+      ? movie.release_date.split("-")[0]
+      : "";
+
+    card.appendChild(img);
+    card.appendChild(title);
+    card.appendChild(year);
+
+    container.appendChild(card);
   });
 }
 
