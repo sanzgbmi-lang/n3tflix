@@ -142,9 +142,16 @@ body {
 }
 
 .poster-title {
+  margin-top: 6px;
+  font-size: 13px;
   color: #fff;
-}
+  opacity: 0.9;
 
+  /* ✅ ONE LINE ONLY */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .poster-year {
   color: rgba(255,255,255,0.6);
 }
