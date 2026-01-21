@@ -337,4 +337,57 @@ body.movie-page {
     width: 100px;
     min-width: 100px;
   }
+   /* =====================================================
+   MOVIE DETAILS PAGE — ISOLATION FIX
+   ===================================================== */
+
+/* prevent row styles from affecting details page */
+body.movie-page .row,
+body.movie-page .row-posters,
+body.movie-page .poster-card {
+  all: unset;
+}
+
+/* poster size */
+body.movie-page .details-poster img {
+  width: 300px !important;
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+/* layout */
+body.movie-page .details-content {
+  display: flex;
+  gap: 40px;
+  padding: 120px 24px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* title */
+body.movie-page .details-info h1 {
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
+/* overview */
+body.movie-page .details-overview {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 20px 0;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  body.movie-page .details-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 100px 16px 40px;
+  }
+
+  body.movie-page .details-poster img {
+    width: 180px !important;
+  }
 }
