@@ -50,35 +50,45 @@ function filterTV() {
 }
 /* ================= ROWS ================= */
 async function fetchMovies(endpoint, id) {
-    const res = await fetch(`${BASE_URL}${endpoint}?api_key=${API_KEY}`);
-    const data = await res.json();
-    const container = document.getElementById(id);
-    if (!container) return;
+  const res = await fetch(`${BASE_URL}${endpoint}?api_key=${API_KEY}`);
+  const data = await res.json();
+  const container = document.getElementById(id);
+  if (!container) return;
 
-    container.innerHTML = "";
+  container.innerHTML = "";
 
-    data.results.forEach(movie => {
-        if (!movie.poster_path || !movie.id) return;
+  data.results.forEach(movie => {
+    if (!movie.poster_path || !movie.id) return;
 
-        const type = movie.title ? "movie" : "tv";
+    const type = movie.title ? "movie" : "tv";
 
-        // 🔑 CREATE ANCHOR (THIS IS THE KEY)
-        const link = document.createElement("a");
-        link.href = `movie.html?id=${movie.id}&type=${type}`;
-        link.style.display = "inline-block";
-        link.style.textDecoration = "none";
+    // Card wrapper
+    const card = document.createElement("div");
+    card.className = "poster-card";
 
-        const img = document.createElement("img");
-        img.src = IMG_URL + movie.poster_path;
-        img.alt = movie.title || movie.name;
-        img.draggable = false;
+    // Clickable link
+    const link = document.createElement("a");
+    link.href = `movie.html?id=${movie.id}&type=${type}`;
+    link.style.textDecoration = "none";
 
-        link.appendChild(img);
-        container.appendChild(link);
-    });
+    // Poster image
+    const img = document.createElement("img");
+    img.src = IMG_URL + movie.poster_path;
+    img.alt = movie.title || movie.name;
+    img.draggable = false;
+
+    // Title text
+    const title = document.createElement("p");
+    title.className = "poster-title";
+    title.textContent = movie.title || movie.name;
+
+    link.appendChild(img);
+    card.appendChild(link);
+    card.appendChild(title);
+
+    container.appendChild(card);
+  });
 }
-
-
 
 /* ================= SCROLL REVEAL ================= */
 function revealRows() {
