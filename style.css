@@ -131,7 +131,23 @@ body {
   font-size: 16px;
   opacity: 0.9;
 }
+/* ===== FIX LINK COLORS ===== */
+.poster-card {
+  text-decoration: none;
+  color: #fff;
+}
 
+.poster-card:visited {
+  color: #fff;
+}
+
+.poster-title {
+  color: #fff;
+}
+
+.poster-year {
+  color: rgba(255,255,255,0.6);
+}
 /* =====================================================
    ROWS (GLOBAL)
    ===================================================== */
