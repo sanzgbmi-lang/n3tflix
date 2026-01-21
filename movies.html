@@ -1,46 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
-    <title>Movies • N3TFL3X</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Explore popular, top-rated, and upcoming movies" />
+    <title>Movies • MOVIEFLIX</title>
     <link rel="stylesheet" href="style.css" />
 </head>
-
 <body class="movies-page">
-    <!-- NAVBAR -->
-    <header class="navbar">
-        <h1 class="logo" onclick="goHome()">N3TFL3X</h1>
-        <nav>
+    <!-- Navbar -->
+    <header class="navbar" id="navbar">
+        <h1 class="logo" onclick="window.location.href='index.html'" role="button" tabindex="0">
+            MOVIEFLIX
+        </h1>
+        <nav aria-label="Main navigation">
             <a href="index.html">Home</a>
-            <a href="search.html">Search</a>
+            <a href="movies.html" aria-current="page">Movies</a>
             <a href="tv.html">TV Shows</a>
-            <a href="movies.html">Movies</a>
+            <a href="search.html">Search</a>
         </nav>
     </header>
-    <!-- FEATURED MOVIE HERO -->
-    <section class="hero" id="movies-hero">
+
+    <!-- Featured Movie Hero -->
+    <section class="hero" id="movies-hero" aria-labelledby="movies-hero-title">
         <div class="hero-content">
-            <h2 id="movies-hero-title">Movies</h2>
-            <p id="movies-hero-desc">Explore popular, top-rated, and upcoming movies.</p>
+            <h2 id="movies-hero-title">Discover Movies</h2>
+            <p id="movies-hero-desc">Explore popular, top-rated, and upcoming movies from around the world.</p>
         </div>
     </section>
-    <!-- MOVIE ROWS -->
-    <section class="row">
-        <h3>Popular Movies</h3>
-        <div class="row-posters" id="popular"></div>
-    </section>
-    <section class="row">
-        <h3>Top Rated Movies</h3>
-        <div class="row-posters" id="topRated"></div>
-    </section>
-    <section class="row">
-        <h3>Upcoming Movies</h3>
-        <div class="row-posters" id="upcoming"></div>
-    </section>
+
+    <!-- Movie Rows -->
+    <main>
+        <section class="row visible" aria-labelledby="popular-heading">
+            <h3 id="popular-heading">Popular Movies</h3>
+            <div class="row-posters" id="popular" role="list"></div>
+        </section>
+
+        <section class="row visible" aria-labelledby="top-rated-heading">
+            <h3 id="top-rated-heading">Top Rated Movies</h3>
+            <div class="row-posters" id="topRated" role="list"></div>
+        </section>
+
+        <section class="row visible" aria-labelledby="upcoming-heading">
+            <h3 id="upcoming-heading">Upcoming Movies</h3>
+            <div class="row-posters" id="upcoming" role="list"></div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
     <script src="global.js" defer></script>
     <script src="movies.js" defer></script>
 </body>
-
 </html>
