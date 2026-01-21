@@ -126,7 +126,37 @@ body {
   margin-bottom: 1.5rem;
   max-width: 50ch;
 }
+/* ================= POSTER WITH TITLE ================= */
 
+.poster-card {
+  width: 160px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.poster-card img {
+  width: 100%;
+  border-radius: 4px;
+  transition: transform 0.3s;
+}
+
+.poster-card img:hover {
+  transform: scale(1.08);
+}
+
+.poster-title {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #fff;
+  opacity: 0.85;
+  line-height: 1.3;
+
+  /* limit long titles */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 /* =====================================================
    BUTTONS
    ===================================================== */
