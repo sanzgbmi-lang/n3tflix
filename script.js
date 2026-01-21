@@ -62,29 +62,32 @@ async function fetchMovies(endpoint, id) {
 
     const type = movie.title ? "movie" : "tv";
 
-    // Card wrapper
     const card = document.createElement("div");
     card.className = "poster-card";
 
-    // Clickable link
     const link = document.createElement("a");
     link.href = `movie.html?id=${movie.id}&type=${type}`;
     link.style.textDecoration = "none";
 
-    // Poster image
     const img = document.createElement("img");
     img.src = IMG_URL + movie.poster_path;
     img.alt = movie.title || movie.name;
     img.draggable = false;
 
-    // Title text
     const title = document.createElement("p");
     title.className = "poster-title";
     title.textContent = movie.title || movie.name;
 
+    // 🎬 Release year
+    const date = movie.release_date || movie.first_air_date || "";
+    const year = document.createElement("span");
+    year.className = "poster-year";
+    year.textContent = date ? date.slice(0, 4) : "";
+
     link.appendChild(img);
     card.appendChild(link);
     card.appendChild(title);
+    card.appendChild(year);
 
     container.appendChild(card);
   });
