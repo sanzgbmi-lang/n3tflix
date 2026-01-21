@@ -1,5 +1,3 @@
-
-
 /* ================= FEATURED TV HERO ================= */
 
 async function loadTVHero() {
@@ -24,7 +22,6 @@ async function loadTVHero() {
 
     hero.style.backgroundImage =
       `url(${imgBase}${show.backdrop_path})`;
-
   } catch (err) {
     console.error("TV hero error:", err);
   }
@@ -38,36 +35,49 @@ async function fetchTV(endpoint, containerId) {
 
   container.innerHTML = "";
 
-  try {
-    const res = await fetch(`${BASE_URL}${endpoint}?api_key=${API_KEY}`);
-    const data = await res.json();
+  const res = await fetch(`${BASE_URL}${endpoint}?api_key=${API_KEY}`);
+  const data = await res.json();
 
-    data.results.forEach(show => {
-      if (!show.poster_path) return;
+  data.results.forEach(show => {
+    if (!show.poster_path) return;
 
-      const link = document.createElement("a");
-      link.href = `movie.html?id=${show.id}&type=tv`;
-      link.style.display = "inline-block";
+    // card
+    const card = document.createElement("a");
+    card.href = `movie.html?id=${show.id}&type=tv`;
+    card.className = "poster-card";
 
-      const img = document.createElement("img");
-      img.src = IMG_URL + show.poster_path;
-      img.alt = show.name;
-      img.loading = "lazy";
-      img.draggable = false;
+    // poster
+    const img = document.createElement("img");
+    img.src = IMG_URL + show.poster_path;
+    img.alt = show.name;
+    img.loading = "lazy";
+    img.draggable = false;
 
-      link.appendChild(img);
-      container.appendChild(link);
-    });
+    // title
+    const title = document.createElement("div");
+    title.className = "poster-title";
+    title.textContent = show.name;
 
-  } catch (err) {
-    console.error("TV fetch error:", err);
-  }
+    // year
+    const year = document.createElement("div");
+    year.className = "poster-year";
+    year.textContent = show.first_air_date
+      ? show.first_air_date.split("-")[0]
+      : "";
+
+    card.appendChild(img);
+    card.appendChild(title);
+    card.appendChild(year);
+
+    container.appendChild(card);
+  });
 }
 
 /* ================= INIT ================= */
 
 document.addEventListener("DOMContentLoaded", () => {
   loadTVHero();
+
   fetchTV("/trending/tv/week", "trendingTV");
   fetchTV("/tv/popular", "popularTV");
   fetchTV("/tv/top_rated", "topRatedTV");
