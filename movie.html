@@ -1,40 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
-    <title>Movie Details</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Movie details and information" />
+    <title>Movie Details</title>
     <link rel="stylesheet" href="style.css" />
 </head>
-
 <body class="movie-page">
+    <!-- Navigation -->
+    <div class="navbar" id="navbar">
+        <div class="logo">MOVIEFLIX</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="movies.html">Movies</a>
+            <a href="tv.html">TV Shows</a>
+            <a href="search.html">Search</a>
+        </nav>
+    </div>
+
+    <!-- Movie Details Hero -->
     <section class="details-hero" id="details-hero">
         <div class="details-content">
             <div class="details-poster">
-                <img id="details-poster" loading="lazy" />
+                <img id="details-poster" alt="Movie poster" loading="lazy" />
             </div>
             <div class="details-info">
-                <h1 id="details-title"></h1>
+                <h1 id="details-title">Loading...</h1>
                 <div class="details-meta" id="details-meta"></div>
                 <div class="details-genres" id="details-genres"></div>
                 <p class="details-overview" id="details-overview"></p>
                 <div class="details-actions">
-                    <button class="btn play" id="play-trailer">▶ Play Trailer</button>
-                    <button class="btn info" onclick="history.back()">⬅ Back</button>
+                    <button class="btn play" id="play-trailer" aria-label="Play trailer">
+                        ▶ Play Trailer
+                    </button>
+                    <button class="btn info" onclick="history.back()" aria-label="Go back">
+                        ⬅ Back
+                    </button>
                 </div>
             </div>
         </div>
-        <!-- ===== TRAILER MODAL ===== -->
-        <div class="trailer-modal" id="trailer-modal">
-            <div class="trailer-content">
-                <button class="trailer-close" id="trailer-close">✕</button>
-                <iframe id="trailer-frame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-                </iframe>
-            </div>
-        </div>
     </section>
+
+    <!-- Trailer Modal -->
+    <div class="trailer-modal" id="trailer-modal" role="dialog" aria-modal="true" aria-labelledby="details-title">
+        <div class="trailer-content">
+            <button class="trailer-close" id="trailer-close" aria-label="Close trailer">✕</button>
+            <iframe 
+                id="trailer-frame" 
+                src="" 
+                title="Movie trailer"
+                frameborder="0" 
+                allow="autoplay; encrypted-media" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
     <script src="movie.js"></script>
 </body>
-
 </html>
